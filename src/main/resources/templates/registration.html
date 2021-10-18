@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*@thymesVar id="title" type=""*/-->
+    <title>Реєстрація</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="/blocks/header.html :: header"></header>
+<div class="container" mt-7>
+    <h1>Реєстрація</h1>
+    <form action="/registration" method="post">
+        <input type="text" name="first_name" placeholder="Введіть ім'я" class="form-control"><br>
+        <input type="text" name="last_name" placeholder="Введіть прізвище" class="form-control"><br>
+        <input type="text" name="username" placeholder="Введіть login" class="form-control"><br>
+        <input type="password" name="password" placeholder="Введіть password" class="form-control"><br>
+
+        <button type="submit" class="btn btn-success">Registration</button>
+    </form>
+
+
+</div>
+<footer th:insert="/blocks/footer.html:: footer"></footer>
+</body>
+</html>

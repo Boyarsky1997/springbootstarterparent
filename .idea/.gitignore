@@ -4,3 +4,8 @@
 *target/
 .idea/
 *Run.java.
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Default ignored files
+/workspace.xml
