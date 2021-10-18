@@ -76,12 +76,14 @@ public class BlogController {
 
     @PostMapping("/blog/{id}/edit")
     public String blogDetailsPostEdit(@PathVariable(value = "id") int id, @RequestParam String title,
-                                      @RequestParam String anons, @RequestParam String fullText, @RequestParam Client client, Model model) {
+                                      @RequestParam String anons, @RequestParam String fullText, Model model) {
         Post post = postRepo.findById(id).orElseThrow();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Optional<Client> byLogin = clientRepo.findByLogin(auth.getName());
         post.setAnons(anons);
         post.setTitle(title);
         post.setFullText(fullText);
-        post.setClient(client);
+        post.setClient(byLogin.get());
         postRepo.save(post);
         model.addAttribute("post", post);
         return "redirect:/blog";

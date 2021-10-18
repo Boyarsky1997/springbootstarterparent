@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long postId;
+    private int postId;
 
     @Column(name = "title")
     private String title;
@@ -55,11 +55,11 @@ public class Post {
         this.views = views;
     }
 
-    public Long getPostId() {
+    public int getPostId() {
         return postId;
     }
 
-    public void setPostId(Long postId) {
+    public void setPostId(int postId) {
         this.postId = postId;
     }
 
