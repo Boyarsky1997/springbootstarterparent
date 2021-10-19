@@ -62,7 +62,7 @@ public class BlogController {
         byId.ifPresent(res::add);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Optional<Client> byLogin = clientRepo.findByLogin(auth.getName());
-        model.addAttribute("client_id",byLogin.get().getClientId());
+        model.addAttribute("client_id", byLogin.get().getClientId());
         model.addAttribute("post", res);
         return "blog-details";
     }
@@ -85,6 +85,9 @@ public class BlogController {
         Post post = postRepo.findById(id).orElseThrow();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Optional<Client> byLogin = clientRepo.findByLogin(auth.getName());
+        if (byLogin.get().getClientId() != post.getClient().getClientId()) {
+            return "redirect:/blog";
+        }
         post.setAnons(anons);
         post.setTitle(title);
         post.setFullText(fullText);
