@@ -4,11 +4,11 @@ import com.github.boyarsky1997.springboot.models.Client;
 import com.github.boyarsky1997.springboot.models.Post;
 import com.github.boyarsky1997.springboot.repo.ClientRepo;
 import com.github.boyarsky1997.springboot.repo.PostRepo;
-import com.github.boyarsky1997.springboot.securety.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,12 +50,14 @@ public class BlogController {
         return "redirect:/blog";
     }
 
+    @Transactional
     @GetMapping("/blog/{id}")
     public String blogDetails(@PathVariable(value = "id") int id, Model model) {
         if (!postRepo.existsById(id)) {
             return "redirect:/blog";
         }
         Optional<Post> byId = postRepo.findById(id);
+        postRepo.incrementViews(id);
         AbstractList<Post> res = new ArrayList<>();
         byId.ifPresent(res::add);
         model.addAttribute("post", res);

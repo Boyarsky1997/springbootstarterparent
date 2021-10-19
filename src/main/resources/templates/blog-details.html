@@ -13,6 +13,7 @@
     <div th:each="el:${post}"  class="alert alert-info mt-2">
         <h3 th:text="${el.title}"/>
         <p th:text="${el.fullText}"/>
+        <p th:text="${el.anons}"/>
         <p th:text="${el.views}"/>
         <a th:href="'/blog/' + ${el.getPostId()}+'/edit'"/>Редагувати<a/>
         <a th:href="'/blog/' + ${el.getPostId()}+'/remove'"/>Видалити<a/>
