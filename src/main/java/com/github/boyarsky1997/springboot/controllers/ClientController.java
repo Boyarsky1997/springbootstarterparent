@@ -39,23 +39,4 @@ public class ClientController {
     public String loginGet(Model model) {
         return "login";
     }
-
-//    @PostMapping("/login")
-//    public String loginPost(@RequestParam String username, @RequestParam String password, Model model) {
-//        System.out.println("+++++++");
-//        for (Client client : clientRepo.findAll()) {
-//            if (!client.getLogin().equals(username) && !client.getPassword().equals(password)) {
-//                return "redirect:/login";
-//            }
-//        }
-//
-//        return "redirect:/";
-//    }
-//    @PostMapping("/logout")
-//    public String logoutPost(@RequestParam String username, @RequestParam String password, Model model) {
-//        System.out.println("+++++++");
-//
-//                return "redirect:/login";
-//
-//    }
 }

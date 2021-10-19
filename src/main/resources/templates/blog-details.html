@@ -15,13 +15,16 @@
         <p th:text="${el.fullText}"/>
         <p th:text="${el.anons}"/>
         <p th:text="${el.views}"/>
+        <p style="float:right"   th:text="Автор +'   '+${el.client.firstName}+' '+ ${el.client.lastName}"/>
 
         <div th:if="${el.getClient().getClientId()== client_id}">
             <a th:href="'/blog/' + ${el.getPostId()}+'/edit'"/>Редагувати<a/>
             <a th:href="'/blog/' + ${el.getPostId()}+'/remove'"/>Видалити<a/>
         </div>
-
-
+        <div th:if="${el.getClient().getClientId()!= client_id}">
+            <samp th:text="."/>
+        </div>
+    </div>
     </div>
 
 </div>
