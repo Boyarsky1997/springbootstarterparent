@@ -60,6 +60,9 @@ public class BlogController {
         postRepo.incrementViews(id);
         AbstractList<Post> res = new ArrayList<>();
         byId.ifPresent(res::add);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Optional<Client> byLogin = clientRepo.findByLogin(auth.getName());
+        model.addAttribute("client_id",byLogin.get().getClientId());
         model.addAttribute("post", res);
         return "blog-details";
     }
