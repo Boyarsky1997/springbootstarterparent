@@ -19,15 +19,18 @@ public class User extends org.springframework.security.core.userdetails.User {
                 boolean credentialsNonExpired,
                 boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
                 String firstName,
-                String lastName) {
+                String lastName,
+                int id) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.firstName = firstName;
         this.lastName = lastName;
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "User{" +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';

@@ -68,6 +68,7 @@ public class SecurityUser implements UserDetails {
                 client.getStatus().equals(Status.ACTIVE),
                 client.getRole().grantedAuthorities(),
                 client.getFirstName(),
-                client.getLastName());
+                client.getLastName(),
+                client.getClientId());
     }
 }

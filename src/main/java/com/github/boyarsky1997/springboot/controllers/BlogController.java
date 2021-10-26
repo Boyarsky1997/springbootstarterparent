@@ -4,6 +4,7 @@ import com.github.boyarsky1997.springboot.models.Client;
 import com.github.boyarsky1997.springboot.models.Post;
 import com.github.boyarsky1997.springboot.repo.ClientRepo;
 import com.github.boyarsky1997.springboot.repo.PostRepo;
+import com.github.boyarsky1997.springboot.securety.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +31,11 @@ public class BlogController {
     @GetMapping("/blog")
     public String blog(Model model) {
         Iterable<Post> post = postRepo.findAll();
+        Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
+        if (!authentication.getName().equals("anonymousUser")) {
+            User user =(User) authentication.getPrincipal();
+            model.addAttribute("user", user);
+        }
         model.addAttribute("posts", post);
         return "blog";
     }
